@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                sh 'Checkout version'
                 git branch: 'master', url: 'https://github.com/sercheo87/hello-jenkins.git'
             }
         }

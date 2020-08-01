@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+
+  nexus:
+    container_name: nexus
+    image: sonatype/nexus3:latest
+    restart: always
+    ports:
+      - 18081:8081
+      - 14441:14441
+      - 14442:14442
+    networks:
+      ci-ntw:
+        aliases:
+          - nexus.srv.com
+
+  jenkins:
+    container_name: jenkins
+    image: jenkins
+    ports:
+      - 18080:8080
+    networks:
+      ci-ntw:
+        aliases:
+          - jenkins.srv.com
+
+  jenkins-full:
+    container_name: jenkins-full
+    image: jenkins
+    ports:
+      - 28080:8080
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    networks:
+      ci-ntw:
+        aliases:
+          - jenkinsfull.srv.com
+
+networks:
+  ci-ntw:

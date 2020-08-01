@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master', url: 'https://github.com/sercheo87/hello-jenkins.git'
+            }
+        }
         stage('Build') {
             agent {
                 docker { image 'node:14-alpine' }

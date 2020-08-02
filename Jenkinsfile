@@ -27,7 +27,10 @@ pipeline {
         }
         stage('Test') {
             agent {
-                docker { image 'docker/compose' }
+                docker {
+                    image 'docker/compose'
+                    args '-e DOCKER_HOST=unix://jenkins-docker:2376 -e DOCKER_TLS_VERIFY=0 -e DOCKER_CERT_PATH=/certs/client -v /certs/client:/certs/client:ro'
+                }
             }
             steps {
                 script {

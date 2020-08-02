@@ -18,7 +18,7 @@ services:
 
   jenkins-docker:
     container_name: 'jenkins-docker'
-    image: 'docker:dind'
+    image: docker:dind
     privileged: 'true'
     restart: always
     hostname: 'jenkins-docker'
@@ -38,7 +38,7 @@ services:
 
   jenkins-tutorial:
     container_name: 'jenkins-tutorial'
-    image: 'jenkinsci/blueocean'
+    image: jenkinsci/blueocean
     restart: always
     hostname: 'jenkins-tutorial'
     environment:

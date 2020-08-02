@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="app-hello-jenkins" tests="1" time="0.149">
-    <testsuite name="Hello request" id="abce355a-c37d-4178-a4a1-ee99fe9ffb91" timestamp="2020-08-02T20:24:49.895Z"
-               tests="2" failures="0" errors="0" time="0.149">
-        <testcase name="Status code is 200" time="0.149" classname="AppHelloJenkins"/>
-        <testcase name="Body matches string" time="0.149" classname="AppHelloJenkins"/>
-    </testsuite>
-</testsuites>

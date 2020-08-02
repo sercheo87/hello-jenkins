@@ -1,4 +1,10 @@
 pipeline {
+    environment {
+        registry = "nexussrv.com:14441/novopayment/demo/node-web-app"
+        registryCredential = 'nexus-private'
+        dockerImage = ''
+    }
+
     agent any
 
     stages {
@@ -13,15 +19,11 @@ pipeline {
                 docker { image 'node:14-alpine' }
             }
             steps {
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
                 echo 'Building..'
                 sh 'node --version'
-            }
-        }
-        stage('Generate Image') {
-            steps {
-                echo 'Generate images...'
-                sh 'docker build -t nexussrv.com:14441/node-web-app .'
-                sh 'docker push nexussrv.com:14441/node-web-app'
             }
         }
         stage('Test') {
@@ -31,7 +33,16 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                script {
+                   docker.withRegistry( '', registryCredential ) {
+                   dockerImage.push()
+               }
                 echo 'Deploying....'
+            }
+        }
+        stage('Cleaning up') {
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
     }

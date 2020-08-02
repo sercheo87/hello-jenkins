@@ -25,8 +25,12 @@ pipeline {
             }
         }
         stage('Test') {
+            agent {
+                docker { image 'docker/compose' }
+            }
             steps {
                 echo 'Testing..'
+                sh 'docker-compose up -d'
             }
         }
         stage('Deploy') {

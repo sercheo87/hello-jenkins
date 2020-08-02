@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sercheo87/hello-jenkins/issues"
   },
-  "homepage": "https://github.com/sercheo87/hello-jenkins#readme"
+  "homepage": "https://github.com/sercheo87/hello-jenkins#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

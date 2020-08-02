@@ -1,48 +1,64 @@
 version: "3.8"
+
 services:
 
   nexus:
     container_name: nexus
     image: sonatype/nexus3:latest
     restart: always
+    hostname: 'nexussrv'
     ports:
       - 18081:8081
       - 14441:14441
       - 14442:14442
     networks:
-      ci-ntw:
+      jenkins-ntw:
         aliases:
-          - nexus.srv.com
+          - nexussrv.com
 
-  jenkins:
-    container_name: jenkins
-    image: jenkins
-    ports:
-      - 18080:8080
-    networks:
-      ci-ntw:
-        aliases:
-          - jenkins.srv.com
-
-  jenkins-full:
-    container_name: jenkins-full
-    build:
-      dockerfile: Dockerfile-jenkins
-      context: .
-    privileged: true
-    image: jenkinsdocker
+  jenkins-docker:
+    container_name: 'jenkins-docker'
+    image: 'docker:dind'
+    privileged: 'true'
     restart: always
-    user: root
+    hostname: 'jenkins-docker'
+    command: ["--insecure-registry", "nexussrv.com:14441", "--insecure-registry", "nexussrv.com:14442"]
     environment:
-      - DOCKER_HOST=tcp://host.docker.internal:2375
-    ports:
-      - 28080:8080
+      - DOCKER_TLS_CERTDIR:/certs
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - jenkins-docker-certs:/certs/client
+      - jenkins-data:/var/jenkins_home
+      - ./home-jenkins:/home
+    ports:
+      - 3000:3000
     networks:
-      ci-ntw:
+      jenkins-ntw:
         aliases:
-          - jenkinsfull.srv.com
+          - jenkins.docker.com
+
+  jenkins-tutorial:
+    container_name: 'jenkins-tutorial'
+    image: 'jenkinsci/blueocean'
+    restart: always
+    hostname: 'jenkins-tutorial'
+    environment:
+      - DOCKER_HOST=tcp://jenkins-docker:2376
+      - DOCKER_CERT_PATH=/certs/client
+      - DOCKER_TLS_VERIFY=1
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - jenkins-docker-certs:/certs/client:ro
+      - ./home-jenkins:/home
+    ports:
+      - 8080:8080
+    networks:
+      jenkins-ntw:
+        aliases:
+          - jenkins.tutorial.com
+
+volumes:
+  jenkins-docker-certs:
+  jenkins-data:
 
 networks:
-  ci-ntw:
+  jenkins-ntw:

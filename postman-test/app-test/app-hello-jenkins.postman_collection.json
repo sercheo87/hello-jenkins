@@ -1,0 +1,44 @@
+{
+  "info": {
+    "_postman_id": "466a294d-defa-44a0-8549-ea1857933294",
+    "name": "app-hello-jenkins",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Hello request",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5f8194b0-f87a-4923-9b63-689f465f661e",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Body matches string\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"Hello World\");\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{server}}:7005",
+          "protocol": "http",
+          "host": [
+            "{{server}}"
+          ],
+          "port": "7005"
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

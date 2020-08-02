@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                deleteDir()
                 echo 'Checkout version'
                 git branch: 'master', url: 'https://github.com/sercheo87/hello-jenkins.git'
             }

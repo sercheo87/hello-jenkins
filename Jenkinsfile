@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.withRegistry( 'nexussrv.com:14441', registryCredential ) {
+                    docker.withRegistry( 'http://nexussrv.com:14441', registryCredential ) {
                         dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     }
                 }
@@ -32,7 +32,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                   docker.withRegistry( 'nexussrv.com:14441', registryCredential ) {
+                   docker.withRegistry( 'http://nexussrv.com:14441', registryCredential ) {
                     dockerImage.push()
                    }
                 }

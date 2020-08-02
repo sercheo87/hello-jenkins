@@ -1,4 +1,4 @@
-FROM node:12
+FROM nexussrv.com:14442/node:12
 
 # Create app directory
 WORKDIR /usr/src/app

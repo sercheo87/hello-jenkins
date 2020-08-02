@@ -17,7 +17,9 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    docker.withRegistry( 'nexussrv.com:14441', registryCredential ) {
+                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    }
                 }
                 echo 'Building..'
             }

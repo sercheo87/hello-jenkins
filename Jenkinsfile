@@ -27,8 +27,12 @@ pipeline {
         }
         stage('Test') {
             steps {
+                script {
+                    docker.withRegistry( 'http://nexussrv.com:14441', registryCredential ) {
+                        sh 'docker-compose up -d'
+                    }
+                }
                 echo 'Testing..'
-                sh 'docker-compose up -d'
             }
         }
         stage('Deploy') {

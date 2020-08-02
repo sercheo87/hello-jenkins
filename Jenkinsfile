@@ -28,8 +28,8 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    docker.withServer('tcp://jenkins.docker.com:2376', registryCredential) {
-                        docker.image('docker/compose').withRun('-e DOCKER_HOST=tcp://jenkins.docker.com:2376') {
+                    docker.withServer('tcp://jenkins-docker:2376', registryCredential) {
+                        docker.image('docker/compose').withRun('-e DOCKER_HOST=tcp://jenkins-docker:2376') {
                             sh 'docker-compose up -d'
                         }
                     }

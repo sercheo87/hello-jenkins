@@ -28,8 +28,10 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    docker.withRegistry( 'http://nexussrv.com:14441', registryCredential ) {
-                        sh 'docker-compose up -d'
+                    docker.withServer('http://nexussrv.com:14441', registryCredential) {
+                        docker.image('docker/compose').withRun('-e DOCKER_HOST=tcp://jenkins-docker:2376') {
+                            sh 'docker-compose up -d'
+                        }
                     }
                 }
                 echo 'Testing..'

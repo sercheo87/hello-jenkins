@@ -26,11 +26,19 @@ services:
 
   jenkins-full:
     container_name: jenkins-full
-    image: jenkins
+    build:
+      dockerfile: Dockerfile-jenkins
+      context: .
+    privileged: true
+    image: jenkinsdocker
+    restart: always
+    user: root
+    environment:
+      - DOCKER_HOST=tcp://host.docker.internal:2375
     ports:
       - 28080:8080
     volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       ci-ntw:
         aliases:

@@ -1,0 +1,12 @@
+FROM jenkins
+
+USER root
+RUN apt update \
+   && apt -y install \
+   curl
+
+RUN curl -sSL https://get.docker.com/ | sh
+
+RUN usermod -a -G staff jenkins
+
+USER jenkins

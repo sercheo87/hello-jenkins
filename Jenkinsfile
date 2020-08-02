@@ -17,6 +17,13 @@ pipeline {
                 sh 'node --version'
             }
         }
+        stage('Generate Image') {
+            steps {
+                echo 'Generate images...'
+                sh 'docker build -t nexussrv.com:14441/node-web-app .'
+                sh 'docker push nexussrv.com:14441/node-web-app'
+            }
+        }
         stage('Test') {
             steps {
                 echo 'Testing..'

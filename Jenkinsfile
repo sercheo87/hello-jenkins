@@ -15,15 +15,11 @@ pipeline {
             }
         }
         stage('Build') {
-            agent {
-                docker { image 'node:14-alpine' }
-            }
             steps {
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
                 echo 'Building..'
-                sh 'node --version'
             }
         }
         stage('Test') {

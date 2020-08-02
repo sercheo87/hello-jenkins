@@ -119,5 +119,4 @@ dist
 
 *.yml
 Jenkinsfile
-package.json
-package-lock.json
+postman-test/

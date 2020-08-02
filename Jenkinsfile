@@ -27,11 +27,14 @@ pipeline {
         }
         stage('Test') {
             agent {
-                docker { image 'docker/compose' }
+                docker.withServer('tcp://jenkins-docker:2376', registryCredential) {
+                    docker.image('docker/compose') {c ->
+                        sh 'docker-compose up -d'
+                    }
+                }
             }
             steps {
                 echo 'Testing..'
-                sh 'docker-compose up -d'
             }
         }
         stage('Deploy') {

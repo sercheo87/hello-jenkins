@@ -34,14 +34,15 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                   docker.withRegistry( '', registryCredential ) {
-                   dockerImage.push()
-               }
+                   docker.withRegistry( 'nexussrv.com:14441', registryCredential ) {
+                    dockerImage.push()
+                   }
+                }
                 echo 'Deploying....'
             }
         }
         stage('Cleaning up') {
-            steps{
+            steps {
                 sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }

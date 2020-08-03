@@ -28,13 +28,23 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'docker/compose'
+                    image 'nexussrv.com:14442/node:12'
                 }
             }
             steps {
-                sh 'docker-compose up'
-                sh 'ls -la postman-test/app-test'
-                echo 'Testing..'
+                sh 'npm start'
+            }
+        }
+        stage('Test') {
+            agent {
+                docker {
+                    image 'nexussrv.com:14441/novopayment/tools/ci/postman-builder:1.0.0'
+                }
+            }
+            steps {
+                sh 'sleep 20'
+                sh 'cd postman-test/app-test && sh run-postman.sh'
+                sh 'ls -la .'
             }
         }
         stage('Deploy') {

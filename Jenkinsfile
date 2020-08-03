@@ -22,22 +22,18 @@ pipeline {
                         dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     }
                 }
-                echo 'Building..'
+                echo 'Building.. $WORKSPACE'
             }
         }
         stage('Test') {
             agent {
                 docker {
                     image 'docker/compose'
-                    args "-v $WORKSPACE:/hello-jenkins"
                 }
             }
             steps {
                 script {
                     sh 'chmod -R 777 $(pwd)'
-                    sh 'chmod -R 777 /hello-jenkins'
-                    sh 'cp -a $(pwd)/* /hello-jenkins'
-                    sh 'cd /hello-jenkins && $(pwd) && ls -la .'
                     sh 'echo $(pwd)'
                     sh 'ls -la'
                     sh 'docker-compose up -d'

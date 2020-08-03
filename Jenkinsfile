@@ -33,6 +33,7 @@ pipeline {
             }
             steps {
                 script {
+                    echo "Building.. $WORKSPACE"
                     sh 'chmod -R 777 $(pwd)'
                     sh 'echo $(pwd)'
                     sh 'ls -la'

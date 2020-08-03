@@ -48,7 +48,8 @@ pipeline {
             }
             post {
                 always {
-                    junit (testResults: '**/postman-report*.*', allowEmptyResults: true)
+                    junit (testResults: '**/postman-report*.xml', allowEmptyResults: true)
+                    archiveArtifacts(artifacts: '**/postman-report*.html', allowEmptyArchive: true)
                 }
             }
         }
@@ -70,7 +71,7 @@ pipeline {
     }
     post {
         always {
-            junit (testResults: '**/postman-report*.*', allowEmptyResults: true)
+            junit (testResults: '**/postman-report*.xml', allowEmptyResults: true)
         }
     }
 }

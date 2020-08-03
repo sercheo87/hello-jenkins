@@ -33,7 +33,6 @@ pipeline {
         stage('Run server test') {
             steps {
                 sh 'docker-compose up -d'
-                sh 'sleep 20'
                 sh 'docker-compose logs'
                 sh 'ls -la .'
                 sh 'ls -la postman-test/app-test'

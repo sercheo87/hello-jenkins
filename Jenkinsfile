@@ -34,6 +34,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker-compose up -d'
+                    sh 'docker-compose down --rmi all --remove-orphans'
                 }
 
                 echo 'Testing..'

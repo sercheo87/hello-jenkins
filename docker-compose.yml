@@ -27,7 +27,7 @@ services:
     working_dir: /app-test
     tty: true
     stdin_open: true
-    command:  sh tail -f /dev/null
+    command:  sh sleep infinity
     # command: sh /app-test/run-postman.sh
     # command: 'sh -c ls -la .'
     environment:

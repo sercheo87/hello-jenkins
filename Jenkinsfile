@@ -17,7 +17,7 @@ pipeline {
         }
         stage('compile-postman-image') {
             steps {
-                sh 'cd postman-test/postsman-builder && docker-compose build .'
+                sh 'cd postman-test/postsman-builder && docker-compose build'
             }
         }
         stage('Build') {

@@ -29,15 +29,17 @@ pipeline {
             agent {
                 docker {
                     image 'docker/compose'
+                    args "-v $WORKSPACE:/hello-jenkins"
                 }
             }
             steps {
                 script {
+                    sh 'cd /hello-jenkins'
                     sh 'pwd'
                     sh 'ls -la'
                     sh 'docker-compose up -d'
                     sh 'sleep 20'
-                    sh 'docker-compose down --rmi all'
+                    sh 'docker-compose down'
                     sh 'ls -la postman-test/app-test'
                 }
 

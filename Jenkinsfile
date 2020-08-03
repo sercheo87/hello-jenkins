@@ -30,7 +30,7 @@ pipeline {
                 script {
                     docker.image('docker/compose').withRun('-v /var/run/docker.sock:/var/run/docker.sock') { c ->
                         sh 'chmod 777 -R .'
-                        sh "./postman-test/app-test/run-postman.sh"
+                        sh "docker-compose up -d"
                     }
                 }
                 echo "Run dockercompose"

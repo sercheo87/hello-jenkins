@@ -33,7 +33,10 @@ pipeline {
         stage('Run server test') {
             steps {
                 sh 'docker-compose up -d'
-                sh 'sleep 5'
+                sh 'sleep 20'
+                sh 'docker-compose logs'
+                sh 'ls -la .'
+                sh 'ls -la postman-test/app-test'
             }
             post {
                 always {
@@ -62,6 +65,7 @@ pipeline {
         always {
             sh 'docker-compose down'
             junit (testResults: '**/postman-report*.xml', allowEmptyResults: true)
+            archiveArtifacts(artifacts: '**/postman-report*.html', allowEmptyArchive: true)
         }
     }
 }

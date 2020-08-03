@@ -25,6 +25,17 @@ pipeline {
                 echo "Building.. $WORKSPACE"
             }
         }
+        stage('Run server dockercompose') {
+            script {
+                docker.image('docker/compose').withRun('-v /var/run/docker.sock:/var/run/docker.sock') { c ->
+                    echo "Hello"
+                    sh "ls -la ."
+                }
+            }
+            steps {
+                echo "Run dockercompose"
+            }
+        }
         stage('Run server test') {
             agent {
                 docker {

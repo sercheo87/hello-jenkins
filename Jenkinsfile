@@ -42,9 +42,9 @@ pipeline {
                 }
             }
             steps {
-                sh 'sleep 20'
+                sh 'sleep 5'
                 sh 'cd postman-test/app-test && sh run-postman.sh'
-                sh 'ls -la .'
+                sh 'ls -la postman-test/app-test'
             }
         }
         stage('Deploy') {

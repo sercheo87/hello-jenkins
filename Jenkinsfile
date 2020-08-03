@@ -23,7 +23,6 @@ pipeline {
                     }
                 }
                 echo 'Building..'
-                sh 'eval "$(docker-machine env default)"'
             }
         }
         stage('Test') {
@@ -34,7 +33,6 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'eval "$(docker-machine env default)"'
                     sh 'docker-compose up -d'
                 }
 

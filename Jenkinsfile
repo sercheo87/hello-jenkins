@@ -25,17 +25,6 @@ pipeline {
                 echo "Building.. $WORKSPACE"
             }
         }
-        stage('Run server dockercompose') {
-            steps {
-                script {
-                    docker.image('docker/compose').withRun('-v /var/run/docker.sock:/var/run/docker.sock') { c ->
-                        sh 'chmod 777 -R .'
-                        sh "docker-compose up -d"
-                    }
-                }
-                echo "Run dockercompose"
-            }
-        }
         stage('Run server test') {
             agent {
                 docker {

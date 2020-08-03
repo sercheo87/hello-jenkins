@@ -35,7 +35,6 @@ pipeline {
                 script {
                     sh 'pwd'
                     sh 'ls -la'
-                    sh 'docker-compose down --rmi all'
                     sh 'docker-compose up -d'
                     sh 'sleep 20'
                     sh 'docker-compose down --rmi all'

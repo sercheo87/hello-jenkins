@@ -26,13 +26,13 @@ pipeline {
             }
         }
         stage('Run server dockercompose') {
-            script {
-                docker.image('docker/compose').withRun('-v /var/run/docker.sock:/var/run/docker.sock') { c ->
-                    echo "Hello"
-                    sh "ls -la ."
-                }
-            }
             steps {
+                script {
+                    docker.image('docker/compose').withRun('-v /var/run/docker.sock:/var/run/docker.sock') { c ->
+                        echo "Hello"
+                        sh "ls -la ."
+                    }
+                }
                 echo "Run dockercompose"
             }
         }

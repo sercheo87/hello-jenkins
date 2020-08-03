@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     docker.image('docker/compose').withRun('-v /var/run/docker.sock:/var/run/docker.sock') { c ->
-                        sh "./app-test/run-postman.sh"
+                        sh "./postman-test/app-test/run-postman.sh"
                     }
                 }
                 echo "Run dockercompose"

@@ -19,7 +19,7 @@ services:
   jenkins-docker:
     container_name: 'jenkins-docker'
     image: docker:dind
-    privileged: 'true'R
+    privileged: 'true'
     restart: always
     hostname: 'jenkins-docker'
     command: ["--insecure-registry", "nexussrv.com:14441", "--insecure-registry", "nexussrv.com:14442"]

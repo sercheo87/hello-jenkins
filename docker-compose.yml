@@ -1,4 +1,4 @@
-version: "2.0"
+version: "3.3"
 
 services:
 
@@ -23,8 +23,8 @@ services:
     image: nexussrv.com:14441/novopayment/tools/ci/postman-builder:1.0.0
     volumes:
       - .:/app-test
-    #    command: bash -c /app-test/run-postman.sh
-    command: 'bash -c "ls -la $(pwd)"'
+    command: bash -c /app-test/run-postman.sh
+    #    command: 'bash -c "ls -la $(pwd)"'
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8

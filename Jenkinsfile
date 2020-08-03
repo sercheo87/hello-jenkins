@@ -15,6 +15,11 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/sercheo87/hello-jenkins.git'
             }
         }
+        stage('compile-postman-image') {
+            steps {
+                sh 'cd postman-test/postsman-builder && docker-compose build .'
+            }
+        }
         stage('Build') {
             steps {
                 script {

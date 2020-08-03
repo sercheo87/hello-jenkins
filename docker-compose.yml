@@ -22,7 +22,9 @@ services:
     container_name: 'app-hello-jenkins-test'
     image: nexussrv.com:14441/novopayment/tools/ci/postman-builder:1.0.0
     volumes:
-      - .:/app-test
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $PWD:$PWD
+    working_dir: $PWD
     command: bash -c /app-test/run-postman.sh
     #    command: 'bash -c "ls -la $(pwd)"'
     environment:

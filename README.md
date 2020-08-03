@@ -86,3 +86,9 @@ docker run --rm \
     
 docker run --rm --name test-compose -v /postman-test:/app-test nexussrv.com:14442/node:12 sh -c 'ls -la /app-test'
 docker run --rm -t -i -v $(pwd):/app-test  nexussrv.com:14442/node:12 /bin/bash    
+
+docker run -d \
+  -it \
+  --name devtest \
+  --mount type=bind,source="$(pwd)",target=/app \
+  nexussrv.com:14441/novopayment/tools/ci/postman-builder:1.0.0

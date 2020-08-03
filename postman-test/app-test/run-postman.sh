@@ -12,4 +12,7 @@ newman run app-hello-jenkins.postman_collection.json \
   --insecure
 
 echo 'Files...'
-ls -la ./postman-test
+echo $(pwd)
+ls -la .
+touch hello.json
+ls -la .

@@ -31,25 +31,9 @@ pipeline {
             }
         }
         stage('Run server test') {
-            agent {
-                docker {
-                    image 'localhost:14442/node:12'
-                }
-            }
             steps {
-                sh 'npm install && npm run start&'
-            }
-        }
-        stage('Run Postman') {
-            agent {
-                docker {
-                    image 'localhost:14441/novopayment/tools/ci/postman-builder:1.0.0'
-                }
-            }
-            steps {
+                sh 'docker-compose up -d'
                 sh 'sleep 5'
-                sh 'cd postman-test/app-test && sh run-postman.sh'
-                sh 'ls -la postman-test/app-test'
             }
             post {
                 always {

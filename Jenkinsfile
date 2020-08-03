@@ -63,7 +63,7 @@ pipeline {
     }
     post {
         always {
-            sh 'docker-compose down'
+             // sh 'docker-compose down'
             junit (testResults: '**/postman-report*.xml', allowEmptyResults: true)
             archiveArtifacts(artifacts: '**/postman-report*.html', allowEmptyArchive: true)
         }

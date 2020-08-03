@@ -65,7 +65,7 @@ pipeline {
     }
     post {
         always {
-            junit '**/postman-report*.*'
+            junit (testResults: '**/postman-report*.*', allowEmptyResults: true)
         }
     }
 }

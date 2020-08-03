@@ -34,7 +34,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'cd /hello-jenkins'
+                    sh 'cd /hello-jenkins && pwd && ls -la .'
                     sh 'pwd'
                     sh 'ls -la'
                     sh 'docker-compose up -d'

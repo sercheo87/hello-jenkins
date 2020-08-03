@@ -22,7 +22,7 @@ services:
     container_name: 'app-hello-jenkins-test'
     image: nexussrv.com:14441/novopayment/tools/ci/postman-builder:1.0.0
     volumes:
-      - /postman-test/app-test:/app-test
+      - /var/jenkins_home/workspace/hello-jenkins@2/postman-test/app-test:/app-test
     #    command: bash -c /app-test/run-postman.sh
     command: bash -c ls -la /app-test
     environment:

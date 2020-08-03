@@ -39,7 +39,6 @@ pipeline {
                     sh 'ls -la'
                     sh 'docker-compose up -d'
                     sh 'sleep 20'
-                    sh 'docker-compose down'
                     sh 'ls -la postman-test/app-test'
                 }
 

@@ -34,6 +34,7 @@ pipeline {
             }
             steps {
                 script {
+                    sh 'eval "$(docker-machine env default)"'
                     sh 'docker-compose up -d'
                 }
 

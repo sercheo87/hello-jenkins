@@ -22,7 +22,7 @@ pipeline {
                         dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     }
                 }
-                echo 'Building.. $WORKSPACE'
+                echo "Building.. $WORKSPACE"
             }
         }
         stage('Test') {

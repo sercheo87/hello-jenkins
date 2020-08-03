@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "nexussrv.com:14441/novopayment/demo/node-web-app"
+        registry = "localhost:14441/novopayment/demo/node-web-app"
         registryCredential = 'nexus-private'
         dockerImage = ''
     }
@@ -23,7 +23,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.withRegistry( 'http://nexussrv.com:14441', registryCredential ) {
+                    docker.withRegistry( 'http://localhost:14441', registryCredential ) {
                         dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     }
                 }
@@ -33,7 +33,7 @@ pipeline {
         stage('Run server test') {
             agent {
                 docker {
-                    image 'nexussrv.com:14442/node:12'
+                    image 'localhost:14442/node:12'
                 }
             }
             steps {
@@ -43,7 +43,7 @@ pipeline {
         stage('Run Postman') {
             agent {
                 docker {
-                    image 'nexussrv.com:14441/novopayment/tools/ci/postman-builder:1.0.0'
+                    image 'localhost:14441/novopayment/tools/ci/postman-builder:1.0.0'
                 }
             }
             steps {
@@ -61,7 +61,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                   docker.withRegistry( 'http://nexussrv.com:14441', registryCredential ) {
+                   docker.withRegistry( 'http://localhost:14441', registryCredential ) {
                     dockerImage.push()
                    }
                 }

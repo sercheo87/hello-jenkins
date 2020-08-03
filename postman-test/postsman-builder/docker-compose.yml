@@ -3,6 +3,6 @@ services:
 
   postman-builder:
     container_name: postman-builder
-    image: nexussrv.com:14441/novopayment/tools/ci/postman-builder:1.0.0
+    image: localhost:14441/novopayment/tools/ci/postman-builder:1.0.0
     build:
       context: .

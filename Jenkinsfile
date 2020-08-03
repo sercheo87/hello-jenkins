@@ -46,6 +46,11 @@ pipeline {
                 sh 'cd postman-test/app-test && sh run-postman.sh'
                 sh 'ls -la postman-test/app-test'
             }
+            post {
+                always {
+                    junit (testResults: '**/postman-report*.*', allowEmptyResults: true)
+                }
+            }
         }
         stage('Deploy') {
             steps {

@@ -20,14 +20,11 @@ services:
 
   app-hello-jenkins-test:
     container_name: 'app-hello-jenkins-test'
-    image: localhost:14441/novopayment/tools/ci/postman-builder:1.0.0
+    image: app-hello-jenkins-test
+    build:
+      context: postman-test/app-test
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./postman-test/app-test:/app-test
-    working_dir: /app-test
-    tty: true
-    stdin_open: true
-    command: tail -F anything
     # command: sh /app-test/run-postman.sh
     # command: 'sh -c ls -la .'
     environment:

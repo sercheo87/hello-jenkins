@@ -27,7 +27,8 @@ services:
     working_dir: /app-test
     tty: true
     stdin_open: true
-    command: sh /app-test/run-postman.sh
+    command:  sh while :; do echo 'Hit CTRL+C'; sleep 1; done
+    # command: sh /app-test/run-postman.sh
     # command: 'sh -c ls -la .'
     environment:
       LC_ALL: en_US.UTF-8

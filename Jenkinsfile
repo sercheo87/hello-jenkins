@@ -32,7 +32,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'npm start'
+                sh 'npm install && npm start'
             }
         }
         stage('Run Postman') {

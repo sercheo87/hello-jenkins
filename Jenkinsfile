@@ -25,7 +25,7 @@ pipeline {
                 echo "Building.. $WORKSPACE"
             }
         }
-        stage('Test') {
+        stage('Run server test') {
             agent {
                 docker {
                     image 'nexussrv.com:14442/node:12'
@@ -35,7 +35,7 @@ pipeline {
                 sh 'npm start'
             }
         }
-        stage('Test') {
+        stage('Run Postman') {
             agent {
                 docker {
                     image 'nexussrv.com:14441/novopayment/tools/ci/postman-builder:1.0.0'

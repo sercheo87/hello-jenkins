@@ -23,6 +23,7 @@ pipeline {
                     }
                 }
                 echo 'Building..'
+                sh 'eval "$(docker-machine env default)"'
             }
         }
         stage('Test') {

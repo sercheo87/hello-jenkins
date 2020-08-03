@@ -12,4 +12,4 @@ newman run app-hello-jenkins.postman_collection.json \
   --insecure
 
 echo 'Files...'
-ls -la .
+ls -la postman-test

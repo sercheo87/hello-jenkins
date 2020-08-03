@@ -34,7 +34,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh "cp -a $(pwd)/*  /hello-jenkins"
+                    sh 'cp -a $(pwd)/*  /hello-jenkins'
                     sh 'cd /hello-jenkins && $(pwd) && ls -la .'
                     sh 'echo $(pwd)'
                     sh 'ls -la'

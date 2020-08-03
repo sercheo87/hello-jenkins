@@ -10,3 +10,6 @@ newman run app-hello-jenkins.postman_collection.json \
   --reporter-htmlextra-browserTitle 'Novopayment Report' \
   --reporter-htmlextra-logs \
   --insecure
+
+echo 'Files...'
+ls -la .

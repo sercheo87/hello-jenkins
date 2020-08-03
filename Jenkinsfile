@@ -34,6 +34,7 @@ pipeline {
             steps {
                 sh 'docker-compose up -d'
                 sh 'docker-compose logs'
+                sh 'docker-compose logs app-hello-jenkins-test'
                 sh 'ls -la .'
                 sh 'ls -la postman-test/app-test'
             }

@@ -63,4 +63,9 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            junit '**/postman-report*.*'
+        }
+    }
 }

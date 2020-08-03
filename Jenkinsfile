@@ -60,6 +60,7 @@ pipeline {
     }
     post {
         always {
+            sh 'docker-compose down'
             junit (testResults: '**/postman-report*.xml', allowEmptyResults: true)
         }
     }

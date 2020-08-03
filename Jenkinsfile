@@ -28,12 +28,13 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image "$registry:$BUILD_NUMBER"
+                    image 'docker/compose'
                 }
             }
             steps {
+                sh 'docker-compose up'
+                sh 'ls -la postman-test/app-test'
                 echo 'Testing..'
-                sh 'node start'
             }
         }
         stage('Deploy') {

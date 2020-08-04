@@ -33,6 +33,7 @@ pipeline {
         stage('Run server test') {
             steps {
                 sh 'docker-compose up -d'
+                sh 'docker cp app-hello-jenkins-test:/app-test/postman-report.xml .'
                 sh 'docker-compose logs'
                 sh 'docker-compose logs app-hello-jenkins-test'
                 sh 'ls -la .'

@@ -25,7 +25,7 @@ services:
       context: postman-test/app-test
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./report-postman:/report-postman
+      - ./postman-test/app-test/report-postman:/report-postman
     # command: sh /app-test/run-postman.sh
     # command: 'sh -c ls -la .'
     environment:

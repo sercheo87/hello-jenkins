@@ -38,6 +38,7 @@ pipeline {
                 sh 'docker-compose logs app-hello-jenkins-test'
                 sh 'ls -la .'
                 sh 'ls -la postman-test/app-test'
+                sh 'ls -la postman-test/app-test/report-postman'
             }
             post {
                 always {

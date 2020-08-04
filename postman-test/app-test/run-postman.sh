@@ -16,3 +16,5 @@ echo $(pwd)
 ls -la .
 touch hello.json
 ls -la .
+
+cp postman-report*.* /report-postman

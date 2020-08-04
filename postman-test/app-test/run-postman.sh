@@ -17,4 +17,7 @@ ls -la .
 touch hello.json
 ls -la .
 
+echo 'Copy reports...'
 cp postman-report*.* /report-postman
+
+ls -la /report-postman

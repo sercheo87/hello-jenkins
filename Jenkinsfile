@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Run server test') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'docker-compose up -d --build'
                 sh 'docker-compose logs'
                 sh 'docker-compose logs app-hello-jenkins-test'
                 sh 'ls -la .'
